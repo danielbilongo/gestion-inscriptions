@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connexion réussie</title>
+    <script>
+        // Récupérer les paramètres de l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        const user = urlParams.get('user');
+        const name = urlParams.get('name');
+
+        if (token) {
+            // Stocker le token dans localStorage
+            localStorage.setItem('authToken', token);
+            localStorage.setItem('currentUser', JSON.stringify({
+                email: user,
+                name: name,
+                token: token
+            }));
+
+            // Rediriger vers le dashboard ou la page d'accueil
+            window.location.href = '/dashboard';
+        } else {
+            // Rediriger vers la page de connexion en cas d'erreur
+            window.location.href = '/auth/login?error=no_token';
+        }
+    </script>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 50px;">
+        <h2>Connexion en cours...</h2>
+        <p>Redirection automatique...</p>
+    </div>
+</body>
+</html>

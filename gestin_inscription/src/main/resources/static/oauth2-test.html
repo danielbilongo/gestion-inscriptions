@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test OAuth2 Google</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; }
+        .button { padding: 15px 30px; font-size: 16px; margin: 10px; cursor: pointer; }
+        .google { background: #4285f4; color: white; border: none; border-radius: 5px; }
+        .info { background: #f0f0f0; padding: 20px; margin: 20px 0; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Test OAuth2 Google - SIGEC</h1>
+    
+    <div class="info">
+        <h3>⚠️ ÉTAPES REQUISES dans Google Cloud Console:</h3>
+        <ol>
+            <li>Allez sur <a href="https://console.cloud.google.com" target="_blank">Google Cloud Console</a></li>
+            <li>Projet: <strong>sigec-oauth2</strong></li>
+            <li>APIs & Services → Identifiants</li>
+            <li>Cliquez sur votre ID client OAuth 2.0</li>
+            <li>Modifiez <strong>URI de redirection autorisées</strong>:</li>
+            <ul>
+                <li>❌ Supprimez: <code>http://localhost:8086/oauth2/callback/google</code></li>
+                <li>✅ Ajoutez: <code>http://localhost:8086/login/oauth2/code/google</code></li>
+            </ul>
+            <li>Cliquez <strong>ENREGISTRER</strong></li>
+        </ol>
+    </div>
+
+    <button class="button google" onclick="testGoogleAuth()">
+        🔐 Tester l'authentification Google
+    </button>
+
+    <script>
+        function testGoogleAuth() {
+            window.location.href = '/oauth2/authorization/google';
+        }
+    </script>
+</body>
+</html>
